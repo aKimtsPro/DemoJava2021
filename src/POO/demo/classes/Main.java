@@ -6,6 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        System.out.println("salut");
+
         Proprietaire prop = new Proprietaire("luc", "luc", "000/00.00.00", 19);
         Chien fido = new Chien("fido", prop.age, prop);
         Chien rex = new Chien("rex", 5, prop);
