@@ -7,13 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         Proprietaire prop = new Proprietaire("luc", "luc", "000/00.00.00", 19);
-        Chien fido = new Chien("fido", prop.age);
-        Chien rex = new Chien("rex", 5);
-
-        System.out.println(fido.proprietaire);
-        System.out.println(rex.proprietaire);
-
-        fido.proprietaire = prop;
+        Chien fido = new Chien("fido", prop.age, prop);
+        Chien rex = new Chien("rex", 5, prop);
 
         prop.prenom = "lucas";
         prop.age = 8;

@@ -7,8 +7,9 @@ public class Chien {
     int age;
     boolean vaccine = true;
 
-    public Chien(String nom, int age) {
+    public Chien(String nom, int age, Proprietaire proprietaire) {
         this.nom = nom;
         this.age = age;
+        this.proprietaire = proprietaire;
     }
 }
