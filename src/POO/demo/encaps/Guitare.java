@@ -11,18 +11,26 @@ public class Guitare {
         this.anneeConstruction = anneeConstruction;
     }
 
-    // lecture
+    public Guitare(int nbrCorde, String type, int anneeConstruction) {
+        this.setNbrCorde(nbrCorde);
+        this.type = type;
+        this.anneeConstruction = anneeConstruction;
+    }
+
+    // lecture - getter
     public int getNbrCorde(){
         return this.nbrCorde;
     }
 
-    // ecriture
+    // ecriture - setter
     void setNbrCorde(int nbrCorde){
         if(nbrCorde >= 0){
             this.nbrCorde = nbrCorde;
             System.out.println("le nombre de corde de la guitare ("+anneeConstruction+", "+type+") a été modifié");
         }
     }
+
+
 
     public String getType() {
         return type;
