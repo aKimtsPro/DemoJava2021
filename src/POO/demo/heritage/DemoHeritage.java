@@ -10,5 +10,8 @@ public class DemoHeritage {
         article1.presenter();
 
         System.out.println(article1);
+
+        VeloDeCourse vdc = new VeloDeCourse("", "bobinet", 0, 0);
+        vdc.presenter();
     }
 }

@@ -1,4 +1,4 @@
-package POO.exo.heritage;
+package POO.exo.heritage.vehicule;
 
 public class Exo4 {
 

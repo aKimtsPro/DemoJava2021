@@ -1,7 +1,6 @@
-package POO.exo.heritage;
+package POO.exo.heritage.vehicule;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 
 public abstract class VehiculeARoue extends Vehicule {
 
