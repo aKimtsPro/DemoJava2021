@@ -1,9 +1,10 @@
 package POO.demo.interfaces;
 
 public class Animal {
-    private int poid;
 
-    public Animal(int poid) {
-        this.poid = poid;
+    protected int poids;
+
+    public Animal(int poids) {
+        this.poids = poids;
     }
 }

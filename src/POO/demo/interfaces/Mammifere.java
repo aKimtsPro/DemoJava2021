@@ -2,10 +2,12 @@ package POO.demo.interfaces;
 
 public class Mammifere extends Animal {
 
-    private int nbrMammelle;
+    protected int nbrMammelle;
 
-    public Mammifere(int poid, int nbrMammelle) {
-        super(poid);
+    public Mammifere(int poids, int nbrMammelle) {
+        super(poids);
         this.nbrMammelle = nbrMammelle;
     }
+
+
 }

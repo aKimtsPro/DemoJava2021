@@ -6,7 +6,8 @@ public class DemoInterface {
 
     public static void main(String[] args) {
 
-        Nageur nageur = new Dauphin(0, 0, 0);
+        Nageur nageur = new Dauphin(25 , 8, 15);
+        ((Dauphin)nageur).nager();
 
     }
 }
