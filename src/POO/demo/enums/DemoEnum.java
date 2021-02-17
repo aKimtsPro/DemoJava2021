@@ -9,6 +9,8 @@ public class DemoEnum {
 
     public static void main(String[] args) {
 
+        System.out.println("modification dans l'original");
+
         System.out.println(Unite.CELCIUS.getFormattedTemperature(24));
 
         List<Thermometre> thermos = new ArrayList<>();
