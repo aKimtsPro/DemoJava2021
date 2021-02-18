@@ -1,5 +1,6 @@
 package POO.demo.services.exercice.stock;
 
+import POO.demo.services.exercice.stock.data_access.StockGeneratorService;
 import POO.demo.services.exercice.stock.models.Order;
 import POO.demo.services.exercice.stock.models.Product;
 
@@ -7,15 +8,15 @@ import java.util.*;
 
 public class StockApplication {
 
-    static List<Product> stock = new ArrayList<>();
-    static List<Order> orders = new ArrayList<>();
+    static List<Product> stock = new ArrayList<>(); // TODO : service
+    static List<Order> orders = new ArrayList<>();  // TODO : service
 
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         // Init stock
-        stock = StockGeneratorService.getInstance().getDataFromCSV();
+        stock = StockGeneratorService.getInstance().getDataFromCSV(); // TODO : service
 
         // Init display
         initMainMenu(scanner);
@@ -157,7 +158,7 @@ public class StockApplication {
             stock
                     .stream()
                     .filter(p -> p.getProduct().contains(productToFind))
-                    .sorted(Comparator.comparingInt(p -> p.getProduct().charAt(0)))
+                    .sorted(Comparator.comparingInt(p -> p.getProduct().charAt(0))) // TODO : ListService
                     .forEach(System.out::println);
 
         }
@@ -198,7 +199,7 @@ public class StockApplication {
         stock
                 .stream()
                 .filter(p -> p.getPrice() >= finalMin && p.getPrice() <= finalMax)
-                .sorted(Comparator.comparingInt(Product::getQuantity))
+                .sorted(Comparator.comparingInt(Product::getQuantity)) // TODO : Metier
                 .forEach(System.out::println);
 
         showSearchActions(scanner);
@@ -220,7 +221,7 @@ public class StockApplication {
         stock
                 .stream()
                 .filter(p -> p.getQuantity() <= finalQuantity)
-                .sorted(Comparator.comparingInt(p -> p.getProduct().charAt(0)))
+                .sorted(Comparator.comparingInt(p -> p.getProduct().charAt(0))) // TODO : metier
                 .forEach(System.out::println);
 
         showSearchActions(scanner);
@@ -236,7 +237,7 @@ public class StockApplication {
             stock
                     .stream()
                     .filter(p -> p.getProductor().contains(productorToFind))
-                    .sorted(Comparator.comparingInt(p -> p.getProductor().charAt(0)))
+                    .sorted(Comparator.comparingInt(p -> p.getProductor().charAt(0))) // TODO : metier
                     .forEach(System.out::println);
 
         }
@@ -281,7 +282,7 @@ public class StockApplication {
         String input = "";
 
         do {
-            List<Product> temp = stock.subList(count, page * pagination);
+            List<Product> temp = stock.subList(count, page * pagination); // TODO : mettre dans le metier
 
             input = scanner.nextLine();
 
@@ -318,7 +319,7 @@ public class StockApplication {
             Product product = stock
                     .stream()
                     .filter(p -> p.getId() == finalProductID)
-                    .findFirst().orElseThrow(() -> new NoSuchElementException("Product with ID : " + id + " not found !!!"));
+                    .findFirst().orElseThrow(() -> new NoSuchElementException("Product with ID : " + id + " not found !!!")); // TODO : metier
 
             Product productToAdd = new Product(
                     product.getId(),
@@ -359,14 +360,14 @@ public class StockApplication {
         order.setPrice(order.calculateTotalPrice().isPresent() ? order.calculateTotalPrice().get() : null);
         System.out.println();
         System.out.println(order);
-        orders.add(order);
+        orders.add(order); // TODO : metier
 
         updateStock(productsToAdd);
 
         initMainMenu(scanner);
     }
 
-    private static void updateStock(List<Product> productsToAdd) {
+    private static void updateStock(List<Product> productsToAdd) { // TODO : metier
         productsToAdd.forEach(p -> {
             Product productToUpdate = stock
                     .stream()
@@ -386,7 +387,7 @@ public class StockApplication {
 
         System.out.println("------\tSTATISTICS\t------");
         System.out.println("Total orders : " + orders.size());
-        System.out.println("Total prices : " + orders.stream().map(Order::getPrice).reduce(Double::sum).orElse(0D) + " EUR"); // 0 - somme
+        System.out.println("Total prices : " + orders.stream().map(Order::getPrice).reduce(Double::sum).orElse(0D) + " EUR"); // TODO : Metier
         System.out.println();
 
         do {

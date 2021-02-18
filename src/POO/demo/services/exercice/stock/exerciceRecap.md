@@ -13,7 +13,7 @@ Créer le générateur.
 Créer une application de gestion de stock:
 Cette app doit pouvoir via un menu :
 - Afficher tous les produits en choisissant le nombre à afficher (10, 50, 100);
-- Faire une recherche complète multi-critères
+- Faire une recherche complète multi-critères(typeProd, prix, qtt, prod)
 - Pouvoir créer des commandes sur ces produits en impactant le stock;
 - Afficher les commandes en cours
 

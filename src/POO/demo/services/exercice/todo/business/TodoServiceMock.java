@@ -7,7 +7,7 @@ import POO.demo.services.exercice.todo.models.Todo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodoServiceMock implements TodoService {
+public class TodoServiceMock implements ListService<Todo> {
 
     // region SINGLETON
 
@@ -30,23 +30,23 @@ public class TodoServiceMock implements TodoService {
     }
 
     @Override
-    public void deleteTodo(int id) throws IllegalArgumentException {
+    public void delete(int id) throws IllegalArgumentException {
         if(id == 4)
             throw new IllegalArgumentException();
     }
 
     @Override
-    public void addTodo(Todo toAdd) {
+    public void add(Todo toAdd) {
 
     }
 
     @Override
-    public List<Todo> getTodoList() {
+    public List<Todo> getList() {
         return new ArrayList<>();
     }
 
     @Override
-    public List<Todo> getSortedTodoList() {
+    public List<Todo> getSortedList(boolean croissant) {
         return new ArrayList<>();
     }
 }

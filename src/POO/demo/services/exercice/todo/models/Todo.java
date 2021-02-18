@@ -1,6 +1,6 @@
 package POO.demo.services.exercice.todo.models;
 
-public class Todo {
+public class Todo implements Model {
 
     public enum Difficulty{
         EASY(10),
@@ -15,6 +15,13 @@ public class Todo {
 
         public int getExpectedTime() {
             return expectedTime;
+        }
+
+        @Override
+        public String toString() {
+            return "Difficulty{" +
+                    "expectedTime=" + expectedTime +
+                    '}';
         }
     }
 
@@ -52,7 +59,7 @@ public class Todo {
         this.difficulty = difficulty;
     }
 
-    @Override
+    @Override // enum size = 3    [0;2]
     public String toString() {
         StringBuilder difficulty = new StringBuilder("[");
         int enumSize = Difficulty.values().length;
@@ -63,6 +70,7 @@ public class Todo {
             else
                 difficulty.append('-');
         }
+
         difficulty.append( "], temps attendu : " )
                 .append( this.getDifficulty().getExpectedTime() )
                 .append("min");

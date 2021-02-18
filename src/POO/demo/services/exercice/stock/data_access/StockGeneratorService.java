@@ -1,4 +1,4 @@
-package POO.demo.services.exercice.stock;
+package POO.demo.services.exercice.stock.data_access;
 
 import POO.demo.services.exercice.stock.models.Product;
 

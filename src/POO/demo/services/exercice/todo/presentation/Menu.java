@@ -1,13 +1,13 @@
 package POO.demo.services.exercice.todo.presentation;
 
-import POO.demo.services.exercice.todo.business.TodoService;
+import POO.demo.services.exercice.todo.business.ListService;
 import POO.demo.services.exercice.todo.business.TodoServiceImpl;
-import POO.demo.services.exercice.todo.business.TodoServiceMock;
 import POO.demo.services.exercice.todo.exceptions.LoadingException;
 import POO.demo.services.exercice.todo.exceptions.SaveException;
 import POO.demo.services.exercice.todo.models.Todo;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -22,7 +22,7 @@ public class Menu {
     // endregion
 
     private final Scanner scanner = new Scanner(System.in);
-    private final TodoService service = TodoServiceImpl.getInstance();
+    private final ListService<Todo> service = TodoServiceImpl.getInstance();
 
     public void start(){
         load(); // Charger les données
@@ -105,7 +105,7 @@ public class Menu {
         System.out.print("---> id de la tâche à supprimer: ");
         try{
             int toDelete = scanner.nextInt();
-            service.deleteTodo(toDelete);
+            service.delete(toDelete);
             System.out.println("- La tâche d'id("+toDelete+") a été supprimée-");
         }
         catch (IllegalArgumentException e){
@@ -127,6 +127,10 @@ public class Menu {
 
         Todo.Difficulty[] difficulties = Todo.Difficulty.values();
 
+        // [Todo.Difficulty.EASY, Todo.Difficulty.MEDIUM, Todo.Difficulty.HARD]
+
+        // TODO: a faire
+
         try {
             System.out.println("- Difficulté");
             for (int i = 0; i < difficulties.length; i++) {
@@ -137,11 +141,11 @@ public class Menu {
             if(difficulty > difficulties.length || difficulty <= 0)
                 throw new Exception();
 
-            service.addTodo(
+            service.add(
                     new Todo(
                             0,
                             nom,
-                            Todo.Difficulty.values()[difficulty-1]
+                            difficulties[difficulty-1]
                     )
             );
         }
@@ -164,6 +168,7 @@ public class Menu {
         while (choix >2 || choix <= 0){
             try{
                 choix = scanner.nextInt();
+                scanner.nextLine();
             }
             catch (InputMismatchException e){
                 scanner.nextLine();
@@ -171,9 +176,19 @@ public class Menu {
             }
         }
         if (choix == 1)
-            service.getSortedTodoList().forEach(System.out::println);
+        {
+            boolean croissant = true;
+            System.out.print("---> entrez 'DESC' pour afficher en tri decroissant :");
+            if(scanner.nextLine().equals("DESC"))
+                croissant = false;
+
+            service.getSortedList(croissant).forEach(System.out::println);
+        }
         else
-            service.getTodoList().forEach(System.out::println);
+            service.getList().forEach(System.out::println);
+
+        System.out.print("---> appuyez sur 'Enter' pour continuer vers le menu principal : ");
+        scanner.nextLine();
     }
 
 }

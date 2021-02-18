@@ -3,13 +3,15 @@ package POO.demo.services.exercice.todo.business;
 import POO.demo.services.exercice.todo.dataAccess.TodoLoader;
 import POO.demo.services.exercice.todo.exceptions.LoadingException;
 import POO.demo.services.exercice.todo.exceptions.SaveException;
+import POO.demo.services.exercice.todo.models.Model;
 import POO.demo.services.exercice.todo.models.Todo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TodoServiceImpl implements TodoService {
+public class TodoServiceImpl implements ListService<Todo> {
 
     // region SINGLETON
 
@@ -35,12 +37,12 @@ public class TodoServiceImpl implements TodoService {
             loader.save(todoList);
     }
 
-    public void addTodo(Todo todo){
+    public void add(Todo todo){
         todo.setId(++lastId);
         todoList.add(todo);
     }
 
-    public void deleteTodo(int id) throws IllegalArgumentException {
+    public void delete(int id) throws IllegalArgumentException {
         todoList.stream()
                 .filter(todo -> todo.getId() == id)
                 .findFirst()
@@ -57,12 +59,17 @@ public class TodoServiceImpl implements TodoService {
                 .orElse(0);
     }
 
-    public List<Todo> getTodoList(){
+    public List<Model> getList(){
         return new ArrayList<>(todoList);
     }
-    public List<Todo> getSortedTodoList(){
-        return todoList.stream()
-                .sorted((t1,t2)-> t1.getDifficulty().compareTo(t2.getDifficulty()))
-                .collect(Collectors.toList());
+    public List<Todo> getSortedList(boolean croissant){
+        if(croissant)
+            return todoList.stream()
+                .sorted( (t1,t2)-> t1.getDifficulty().compareTo(t2.getDifficulty()) )
+                .collect( Collectors.toList() );
+        else
+            return todoList.stream()
+                    .sorted( Comparator.comparing(Todo::getDifficulty).reversed() )
+                    .collect( Collectors.toList() );
     }
 }
