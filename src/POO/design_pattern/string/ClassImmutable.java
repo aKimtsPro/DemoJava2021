@@ -9,7 +9,7 @@ import POO.demo.services.exercice.todo.models.Person;
 public final class ClassImmutable {
 
     private final String propriete1;
-    private final Person person;
+    private final Person person; // ceci empêche la classe d'être immutable (clause 3)
 
     public ClassImmutable(String propriete1, Person person) {
         this.propriete1 = propriete1;
